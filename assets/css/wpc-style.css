@@ -1,0 +1,22 @@
+img[data-src] {
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+    will-change: opacity;
+  }
+  img[data-src][src] {
+    opacity: 1;
+  }
+  #outer-container {
+    width: 75%;
+    padding: 0 10px;
+    float: left;
+  }
+  .inner-filter {
+    margin: 0;
+    float: right;
+    width:24%;
+  }
+  .error-message {
+    color: red;
+    margin-top: 10px;
+}
