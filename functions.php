@@ -655,6 +655,10 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 	}
 endif;
 
+/**
+ * Filter to add lazy load for the images
+ * Added by : Vasanta Subedi
+ */
 add_filter( 'the_content', 'my_lazyload_content_images' );
 add_filter( 'widget_text', 'my_lazyload_content_images' );
 add_filter( 'wp_get_attachment_image_attributes', 'my_lazyload_attachments', 10, 2 );
@@ -681,6 +685,11 @@ function my_lazyload_attachments( $atts, $attachment ) {
 
 add_action( 'wp_enqueue_scripts', 'wpc_custom_enqueue_resources', 10 );
 
+/**
+ * function to add custom style and scripts
+ *
+ * @return void
+ */
 function wpc_custom_enqueue_resources() {
   $js_dir = get_stylesheet_directory_uri().'/assets/js';
   $css_dir = get_stylesheet_directory_uri().'/assets/css';
@@ -693,11 +702,17 @@ function wpc_custom_enqueue_resources() {
 	)
 );
 }
-
+// Add Sidebar
 function filter_sidebar(){
 	include('sidebar.php');
 }
 
+
+/**
+ * Function to add filter feature for the post lists
+ *
+ * @return void
+ */
 function wpc_filter()
 {
     if ( ! wp_verify_nonce( $_POST['security'], 'wpcAjaxNonce' ) ) {
@@ -749,7 +764,9 @@ function auto_redirect_after_logout(){
 }
 add_action('wp_logout','auto_redirect_after_logout');
 
-
+/** 
+ * Function to validate and register the user
+ */
 function custom_user_registration() {
 	global $errors;
     if ( isset( $_POST['username'] ) && isset( $_POST['email'] ) && isset( $_POST['password'] ) ) {
@@ -797,7 +814,7 @@ function custom_user_registration() {
 add_action( 'admin_post_nopriv_custom_user_registration', 'custom_user_registration' );
 
 /**
- * Function
+ * Function to sync user details between two sites.
  * @param [type] $user_id
  * @return void
  */
